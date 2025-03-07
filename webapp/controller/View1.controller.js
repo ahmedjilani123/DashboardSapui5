@@ -54,17 +54,18 @@ sap.ui.define([
     'sap/ui/export/library',
     'sap/ui/export/Spreadsheet',
     "sap/ui/model/odata/v2/ODataModel",
-    'sap/ui/core/Fragment'
+    'sap/ui/core/Fragment',
+      "sap/ui/core/BusyIndicator"
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller, DateFormat, exportLibrary, Spreadsheet,ODataModel,Fragment) {
+    function (Controller, DateFormat, exportLibrary, Spreadsheet,ODataModel,Fragment,BusyIndicator) {
         "use strict";
         var EdmType = exportLibrary.EdmType;
         return Controller.extend("dashboard.controller.View1", {
             onInit: function () {
-            
+                BusyIndicator.hide();
                 var model = new sap.ui.model.json.JSONModel("model/data.json");
                 this.getView().setModel(model, "list")
                 var oDateFormat = DateFormat.getDateInstance({
