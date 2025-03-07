@@ -53,12 +53,13 @@ sap.ui.define([
     "sap/ui/core/format/DateFormat",
     'sap/ui/export/library',
     'sap/ui/export/Spreadsheet',
-    "sap/ui/model/odata/v2/ODataModel"
+    "sap/ui/model/odata/v2/ODataModel",
+    'sap/ui/core/Fragment'
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller, DateFormat, exportLibrary, Spreadsheet,ODataModel) {
+    function (Controller, DateFormat, exportLibrary, Spreadsheet,ODataModel,Fragment) {
         "use strict";
         var EdmType = exportLibrary.EdmType;
         return Controller.extend("dashboard.controller.View1", {
@@ -331,6 +332,30 @@ sap.ui.define([
                     debugger;
                     oSheet.destroy();
                 });
+            },
+            onExportPressM:function(oEvent){
+                var oButton = this.getView().byId("PlantWise_excel0"),
+				oView = this.getView();
+
+			// create popover
+            var that =this;
+			if (!that._pPopover) {
+				that._pPopover = Fragment.load({
+					id: oView.getId(),
+					name: "dashboard.fragment.pop",
+					controller: that
+				}).then(function(oPopover) {
+					oView.addDependent(oPopover);
+					return oPopover;
+				});
+			}
+			that._pPopover.then(function(oPopover) {
+                setTimeout(()=>{
+
+                    oPopover.openBy(oButton);
+                    oPopover.isOpen(true);
+                },2000)
+			});
             }
         });
     });

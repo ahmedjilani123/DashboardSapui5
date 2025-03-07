@@ -16,7 +16,7 @@
                     <f:content>
                         <commons:ChartContainer width="100%" id="firstPlantC_Id" showFullScreen="true" showLegendButton="false" showLegend="true" showZoom="false" contentChange="firstContainerCPress">
                             <commons:customIcons>
-                                <core:Icon id="PlantWise_excel0" src="sap-icon://excel-attachment" visible="false" press="onExportPress"></core:Icon>
+                                <core:Icon id="PlantWise_excel0" src="sap-icon://excel-attachment" visible="true" press="onExportPressM"></core:Icon>
 
                             </commons:customIcons>
                             <commons:content>
